@@ -1,0 +1,34 @@
+<!-- templates/pillar_query.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Openings by Pillar</title>
+</head>
+<body>
+    <h1>Select Pillar to View Job Openings</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if jobs %}
+        <h2>Job Openings for Pillar: {{ form.pillar.value }}</h2>
+        <ul>
+            {% for job in jobs %}
+                <li>
+                    <strong>{{ job.JobTitle }}</strong> ({{ job.JobID }})<br>
+                    Primary Skills: {{ job.PrimarySkills }}<br>
+                    Secondary Skills: {{ job.SecondarySkills }}<br>
+                    Location: {{ job.Location }}<br>
+                    Experience: {{ job.Experience }}<br>
+                    Certifications: {{ job.Certifications }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif jobs is not None %}
+        <p>No job openings found for the selected pillar.</p>
+    {% endif %}
+</body>
+</html>

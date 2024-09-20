@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCERA</title>
+    <!--<link rel="stylesheet" href="HR_submit_styles.css">-->
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .header {
+          background-color: #1E407C;
+          color: white;
+          padding: 0px 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-left: 0px;
+          padding-right: 20px;
+      }
+      
+      .logo {
+          width: 60px;
+          vertical-align: left;
+      }
+      
+      
+      h1 {
+          font-size: 1.0em;
+          font-weight: bold;
+          margin: 0;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+      }
+          
+
+        
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 70%;
+            gap: 500px;
+            padding-top: 75px;
+            padding-left: 500PX;
+        }
+
+        .option {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
+            border-radius: 40%;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold; 
+        }
+
+        /* Make the options div show 3 columns per row */
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        /* Optional: make sure the layout is responsive */
+        @media (max-width: 768px) {
+            .options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+       
+    
+    </style>
+    
+</head>
+<body>
+    
+   
+
+
+
+<div class="header">
+    <img src="https://i.postimg.cc/0QWg6zSP/slb-logo.jpg" alt="SLB Logo" class="logo">
+  <h1>vCERA - virtual Centralized Employee Development and Role mapping Application</h1>
+</div>
+
+    
+
+        <div class="options">
+            <div class="option">My CNP</div>
+            <div class="option">MyCareer Portal</div>
+            <div class="option">My Performance Appraisal (SLP3)</div>
+            <div class="option">Learning Platforms</div>
+            <div class="option">Technology Bot</div>
+            <div class="option">OJT</div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>

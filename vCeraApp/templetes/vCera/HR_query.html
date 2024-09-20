@@ -1,0 +1,46 @@
+<!-- query_employee.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Query</title>
+</head>
+<body>
+    <h1>HR Query Form</h1>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    
+    {% if results %}
+    <h2>Results</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>pillar</th>
+                <th>primary_skills</th>
+                <th>secondary_skills</th>
+                <th>location</th>
+                <th>experience</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in results %}
+            <tr>
+                <td>{{ employee.pillar }}</td>
+                <td>{{ employee.primary_skills }}</td>
+                <td>{{ employee.secondary_skills }}</td>
+                <td>{{ employee.location }}</td>
+                <td>{{ employee.experience}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+</body>
+</html>

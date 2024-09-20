@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCERA Login</title>
+    <!--<link rel="stylesheet" href="login_styles.css">-->
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #fff;
+}
+
+
+.header {
+    background-color: #1E407C;
+    color: white;
+    padding: 0px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.logo {
+    width: 60px;
+    vertical-align: left;
+    
+}
+
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.login-btn {
+    background-color: #4A47EB;
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.login-btn:hover {
+    background-color: #3a37c1;
+}
+
+p {
+    color: #1E407C;
+    font-size: 16px;
+    padding: 35px 30px;
+}
+
+a {
+    color: #1E407C;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+
+    
+    <div class="header">
+     
+        <img src="https://i.postimg.cc/0QWg6zSP/slb-logo.jpg" alt="SLB Logo" class="logo">
+        <h1>vCERA</h1>
+    </div>
+
+    <div class="container">
+        
+        <a href="{% url 'first_page' %}" class="login-btn">Automatic Login</a>
+       
+        <p>Click here for<br>
+        Automatic Login to vCera<br>
+        Using your Windows<br>
+        <a href="#">(Help)</a></p>
+
+        <p>If you are using a shared system please<br>
+        <a href="#">click here</a></p>
+    </div>
+</body>
+</html>

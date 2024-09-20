@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCERA Forms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #1E407C;
+            color: white;
+            padding: 0px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 0px;
+            padding-right: 20px;
+        }
+
+        .logo {
+            width: 60px;
+            vertical-align: left;
+        }
+
+        h1 {
+            font-size: 1.0em;
+            font-weight: bold;
+            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .form-container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .notice {
+            color: red;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            background-color: #FF3B3B;
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .submit-btn:hover {
+            background-color: #E63232;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="slb-logo.png" alt="SLB Logo" class="logo">
+        <h1>vCERA - Virtual Centralized Employee Development and Role Mapping Application</h1>
+    </div>
+
+    <div class="form-container">
+        <p class="notice">*Only HR need to fill this</p>
+
+        <!-- Form 1: Search in Employee Table -->
+        <h2>Search Employee Data</h2>
+        <form action="{% url 'query' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="empName">Employee Name</label>
+                <input type="text" id="empName" name="empName" placeholder="Enter Employee Name">
+            </div>
+
+            <div class="form-group">
+                <label for="ginNumber">GIN Number</label>
+                <input type="text" id="ginNumber" name="ginNumber" placeholder="Enter GIN Number">
+            </div>
+
+            <div class="form-group">
+                <label for="currentRole">Current Role</label>
+                <input type="text" id="currentRole" name="currentRole" placeholder="Enter Current Role">
+            </div>
+
+            <div class="form-group">
+                <label for="previousRole">Previous Role</label>
+                <input type="text" id="previousRole" name="previousRole" placeholder="Enter Previous Role">
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Experience</label>
+                <input type="text" id="experience" name="experience" placeholder="Enter Experience">
+            </div>
+
+            <div class="form-group">
+                <label for="pillar">Pillar</label>
+                <input type="text" id="pillar" name="pillar" placeholder="Enter Pillar">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="Enter Location">
+            </div>
+
+            <div class="form-group">
+                <label for="primarySkills">Primary Skills</label>
+                <input type="text" id="primarySkills" name="primarySkills" placeholder="Enter Primary Skills">
+            </div>
+
+            <div class="form-group">
+                <label for="secondarySkills">Secondary Skills</label>
+                <input type="text" id="secondarySkills" name="secondarySkills" placeholder="Enter Secondary Skills">
+            </div>
+
+            <div class="form-group">
+                <label for="certifications">Certifications</label>
+                <input type="text" id="certifications" name="certifications" placeholder="Enter Certifications">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Search Employee</button>
+            </div>
+        </form>
+
+        <!-- Form 2: Search Manager Data by Pillar -->
+        <h2>Search Manager Open Positions</h2>
+        <form action="{% url 'pillar_query' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="pillar">Pillar</label>
+                <select id="pillar" name="pillar">
+                    <option value="" disabled selected>Select the Pillar</option>
+                    <option value="OS_IT_Digital_Operations">OS - IT Digital Operations</option>
+                    <option value="OS_IT_SAP">OS - IT SAP</option>
+                    <option value="OS_IT_Data_Analytics">OS - IT Data and Analytics</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Search Manager Open Positions</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

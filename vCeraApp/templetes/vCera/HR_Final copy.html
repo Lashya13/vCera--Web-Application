@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCERA - HR Query</title>
+    <!--<link rel="stylesheet" href="HR_styles.css">-->
+    <style>
+        /* Same as before */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+
+.header {
+    background-color: #1E407C;
+    color: white;
+    padding: 0px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.logo {
+    width: 60px;
+    vertical-align: left;
+}
+
+
+h1 {
+    font-size: 1.0em;
+    font-weight: bold;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+h2 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.left-section, .right-section {
+    width: 45%;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="file"] {
+    padding: 3px;
+}
+
+.search-btn {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.search-btn:hover {
+    background-color: darkred;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="slb-logo.png" alt="SLB Logo" class="logo">
+        <h1>vCERA - virtual Centralized Employee Development and Role mapping Application</h1>
+    </div>
+
+    <div class="container">
+       <!-- <header>
+            <div class="logo">
+                <img src="slb-logo.png" alt="SLB Logo">
+            </div>
+            <h1>vCERA - virtual Centralized Employee Development and Role mapping Application</h1>
+        </header>-->
+
+        <h2>HR Query</h2>
+        <div class="form-container">
+            <form id="hrQueryForm">
+                <div class="left-section">
+                    <label for="pillar">Pillar</label>
+                    <select id="pillar">
+                        <option value="">Select the Pillar</option>
+                        <option value="OS - IT Digital operations">OS - IT Digital operations</option>
+                        <option value="OS - IT SAP">OS - IT SAP</option>
+                        <option value="OS - IT Data and Analytics">OS - IT Data and Analytics</option>
+                    </select>
+                    <button type="button" class="search-btn" id="pillarSearchBtn">Search</button>
+
+                    <div id="jobIdSection" style="display: none;">
+                        <label for="jobId">Job ID</label>
+                        <select id="jobId">
+                            <option value="">Select the Listed Job ID</option>
+                            <option value="JB101">JB101</option>
+                            <option value="JB102">JB102</option>
+                            <option value="JB103">JB103</option>
+                        </select>
+                        <button type="button" class="search-btn" id="jobIdSearchBtn">Search</button>
+                    </div>
+                </div>
+
+                <div class="right-section" id="jobDetailsSection" style="display: none;">
+                    <label for="jobTitle">Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="Enter the Job Title">
+
+                    <label for="primarySkills">Primary Skills</label>
+                    <input type="text" id="primarySkills" placeholder="Enter the Primary skills required">
+
+                    <label for="secondarySkills">Secondary Skills</label>
+                    <input type="text" id="secondarySkills" placeholder="Enter the Secondary skills required">
+
+                    <label for="certifications">Certifications</label>
+                    <input type="text" id="certifications" placeholder="Enter the Mandatory certifications if required">
+
+                    <label for="jobDescription">Job Description</label>
+                    <input type="file" id="jobDescription">
+
+                    <button type="submit" class="search-btn">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+    const pillarSearchBtn = document.getElementById('pillarSearchBtn');
+    const jobIdSection = document.getElementById('jobIdSection');
+    const jobIdSearchBtn = document.getElementById('jobIdSearchBtn');
+    const jobDetailsSection = document.getElementById('jobDetailsSection');
+    const jobIdSelect = document.getElementById('jobId');
+
+    // When the user clicks the 'Search' button for the Pillar
+    pillarSearchBtn.addEventListener('click', function() {
+        const selectedPillar = document.getElementById('pillar').value;
+        if (selectedPillar) {
+            jobIdSection.style.display = 'block'; // Show the Job ID dropdown
+        } else {
+            alert("Please select a Pillar");
+        }
+    });
+
+    // When the user selects a Job ID and clicks the 'Search' button
+    jobIdSearchBtn.addEventListener('click', function() {
+        const selectedJobId = jobIdSelect.value;
+        if (selectedJobId) {
+            jobDetailsSection.style.display = 'block'; // Show the Job Details section
+        } else {
+            alert("Please select a Job ID");
+        }
+    });
+});
+
+
+    </script>
+</body>
+</html>

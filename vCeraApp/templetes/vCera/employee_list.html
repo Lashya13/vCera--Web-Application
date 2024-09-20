@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <style>
+        /* Your styles for the employee list page */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .header {
+          background-color: #1E407C;
+          color: white;
+          padding: 0px 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-left: 0px;
+          padding-right: 20px;
+      }
+      
+      .logo {
+          width: 60px;
+          vertical-align: left;
+      }
+      
+      
+      h1 {
+          font-size: 1.0em;
+          font-weight: bold;
+          margin: 0;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+      }
+          
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #4A47EB;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.postimg.cc/0QWg6zSP/slb-logo.jpg" alt="SLB Logo" class="logo">
+      <h1>vCERA - virtual Centralized Employee Development and Role mapping Application</h1>
+    </div>
+    
+    <h2>List of Employees</h2>
+
+    {% if employees %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>GIN Number</th>
+                    <th>Current Role</th>
+                    <th>Location</th>
+                    <th>Pillar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td><a href="{% url 'employee' %}">{{ employee.employee_name }} </a></td>
+                        <td>{{ employee.gin_number }}</td>
+                        <td>{{ employee.current_role }}</td>
+                        <td>{{ employee.location }}</td>
+                        <td>{{ employee.pillar }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No employees found matching the search criteria.</p>
+    {% endif %}
+</body>
+</html>

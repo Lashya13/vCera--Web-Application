@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Query</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>HR Query</h2>
+
+    <!-- Pillar Selection Form -->
+    <form id="pillarForm">
+        {{ pillar_form.as_p }}
+        <button type="button" id="searchPillarBtn">Search</button>
+    </form>
+
+    <!-- Job ID and Job Details (Initially hidden) -->
+    <form id="jobForm" style="display: none;">
+        {{ job_form.as_p }}
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" readonly><br>
+
+        <label for="primarySkills">Primary Skills:</label>
+        <input type="text" id="primarySkills" readonly><br>
+
+        <label for="secondarySkills">Secondary Skills:</label>
+        <input type="text" id="secondarySkills" readonly><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" readonly><br>
+
+        <label for="experience">Experience:</label>
+        <input type="text" id="experience" readonly><br>
+
+        <label for="certifications">Certifications:</label>
+        <input type="text" id="certifications" readonly><br>
+
+        <button type="button" id="searchEmployeesBtn">Search Employees</button>
+    </form>
+
+    <div id="employeeList"></div>
+
+    <script>
+        $(document).ready(function() {
+            // AJAX to load JobIDs when a Pillar is selected
+            $('#searchPillarBtn').click(function() {
+                var pillar = $('#id_Pillar').val();
+                if (pillar) {
+                    $.ajax({
+                        url: "{% url 'load_job_ids' %}",
+                        data: {
+                            'Pillar': pillar
+                        },
+                        success: function(data) {
+                            $('#id_JobID').empty();
+                            $('#id_JobID').append('<option value="">Select Job ID</option>');
+                            $.each(data, function(index, job) {
+                                $('#id_JobID').append('<option value="' + job.id + '">' + job.JobID + '</option>');
+                            });
+                            $('#jobForm').show();
+                        }
+                    });
+                }
+            });
+
+            // AJAX to load job details when JobID is selected
+            $('#id_JobID').change(function() {
+                var jobId = $(this).val();
+                if (jobId) {
+                    $.ajax({
+                        url: "{% url 'load_job_details' %}",
+                        data: {
+                            'JobID': jobId
+                        },
+                        success: function(data) {
+                            $('#jobTitle').val(data.JobTitle);
+                            $('#primarySkills').val(data.PrimarySkills);
+                            $('#secondarySkills').val(data.SecondarySkills);
+                            $('#location').val(data.Location);
+                            $('#experience').val(data.Experience);
+                            $('#certifications').val(data.Certifications);
+                        }
+                    });
+                }
+            });
+
+            // AJAX to search for employees
+            $('#searchEmployeesBtn').click(function() {
+                var jobId = $('#id_JobID').val();
+                $.ajax({
+                    url: "{% url 'search_employees' %}",
+                    data: {
+                        'JobID': jobId
+                    },
+                    success: function(data) {
+                        $('#employeeList').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

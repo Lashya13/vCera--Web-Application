@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Posting Confirmation</title>
+    <!--<link rel="stylesheet" href="manager_submit_styles.css"> -->
+    <style>
+        /* General styles */
+
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+.header {
+background-color: #1E407C;
+color: white;
+padding: 0px 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-left: 0px;
+padding-right: 20px;
+}
+
+.logo {
+width: 60px;
+vertical-align: left;
+}
+
+
+.header h1 {
+font-size: 1.0em;
+font-weight: bold;
+margin: 0;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+}
+.confirmation-message {
+    margin-top: 200px;
+}
+
+.search-note {
+    background-color: #f1effd;
+    border-radius: 15px;
+    padding: 10px;
+    color: #000;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    text-align: center;
+}
+.search-bar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+.search-btn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 1rem;
+    background-color: #1f3d8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.result-message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: green;
+}
+    </style>
+</head>
+<body>
+   
+    
+    <div class="header">
+        <img src="https://i.postimg.cc/0QWg6zSP/slb-logo.jpg" alt="SLB Logo" class="logo">
+        <h1>vCERA - virtual Centralized Employee Development and Role mapping Application</h1>
+    </div>
+
+    <div class="confirmation-message">
+        <h1>Job Openings Posted successfully with Job ID: <span id="jobId"><p>{{ job_id }}</p></span></h1>
+       <!-- <p class="search-note">🔍 Search with your JOB ID to know the status</p> -->
+    </div> 
+
+   
+<!--
+    <div class="search-bar">
+        <input type="Search with your JOB ID to know the status" id="jobIdInput" placeholder="Enter Job ID">
+        <button class="search-btn" onclick="searchJob()">Search</button>
+    </div>
+
+    <div class="result-message" id="resultMessage"></div>
+
+    <script>
+        function searchJob() {
+            var jobId = document.getElementById("jobIdInput").value;
+            if (jobId === "J101") {
+                document.getElementById("resultMessage").innerText = "Job ID: " + jobId + " - Status: Posted and Open.";
+            } else {
+                document.getElementById("resultMessage").innerText = "Job ID: " + jobId + " - No job found with this ID.";
+            }
+        }
+    </script>-->
+
+<!--<p>Full width:</p>
+<form class="example" action="/action_page.php">
+  <input type="text" placeholder="Search.." name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form> 
+<button class="submit-btn">Submit</button>-->
+
+</body>
+</html>

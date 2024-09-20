@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot UI</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        .chat-container { max-width: 400px; margin: 50px auto; background-color: #e0f7fa; border-radius: 10px; padding: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .chat-box { height: 400px; overflow-y: scroll; padding: 10px; border-bottom: 2px solid #ddd; background-color: #fff; border-radius: 10px 10px 0 0; }
+        .message { padding: 8px 15px; border-radius: 20px; margin-bottom: 10px; max-width: 80%; }
+        .bot-message { background-color: #007bff; color: white; text-align: left; }
+        .user-message { background-color: #f1f1f1; color: #333; text-align: right; }
+        .input-box { padding: 15px; background-color: #007bff; border-radius: 0 0 10px 10px; display: flex; justify-content: space-between; }
+        .input-box input { width: 80%; padding: 10px; border-radius: 20px; border: none; }
+        .input-box button { background-color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+        <div class="input-box">
+            <input type="text" id="user_input" placeholder="Send a message...">
+            <button onclick="sendMessage()">&#9658;</button>
+        </div>
+    </div>
+
+    <script>
+        let step = 1;  // Start at the first step of the conversation
+
+        function sendMessage() {
+            const userInput = document.getElementById('user_input').value;
+            if (!userInput) return;
+            
+            // Add user's message to chat
+            addMessage('user-message', userInput);
+
+            // Clear the input field
+            document.getElementById('user_input').value = '';
+
+            // Fetch bot's response from server
+            fetch(`/chat/?message=${encodeURIComponent(userInput)}&step=${step}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Add bot's message to chat
+                    addMessage('bot-message', data.message);
+                    
+                    // Update the conversation step
+                    step = data.step;
+                });
+        }
+
+        function addMessage(className, message) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+            messageDiv.innerHTML = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
+        }
+
+        // Initialize with a welcome message from the bot
+        window.onload = () => {
+            addMessage('bot-message', "Hello, what would you like to talk about today?");
+        };
+    </script>
+</body>
+</html>
